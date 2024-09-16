@@ -1,6 +1,7 @@
 import { PizzaService, Franchise, Store, OrderHistory, User, Menu, Order, Role } from './pizzaService';
 
 const pizzaServiceUrl = import.meta.env.VITE_PIZZA_SERVICE_URL;
+console.log(pizzaServiceUrl);
 const pizzaFactoryUrl = import.meta.env.VITE_PIZZA_FACTORY_URL;
 
 class HttpPizzaService implements PizzaService {
