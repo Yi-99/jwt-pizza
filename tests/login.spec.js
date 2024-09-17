@@ -67,14 +67,15 @@ test('purchase with login', async ({ page }) => {
     expect(route.request().postDataJSON()).toMatchObject(orderReq);
     await route.fulfill({ json: orderRes });
     } else if (route.request().method() === 'GET') {
-      const getOrderRes = { dinerId: 1, orders: [{ id: 1, franchiseId: 2, storeId: 4, date: '2024-06-05T05:14:40.000Z', items: [ 
-        { menuId: 1, description: 'Veggie', price: 0.0038 },
-        { menuId: 2, description: 'Pepperoni', price: 0.0042 },
-        { menuId: 1, description: 'Veggie', price: 0.0038 },
-        { menuId: 2, description: 'Pepperoni', price: 0.0042 },
-      ],
-      page: 1,
-      }] }
+      const getOrderRes = { dinerId: 1, orders: [{ id: 1, franchiseId: 2, storeId: 4, date: '2024-06-05T05:14:40.000Z', 
+        items: [ 
+          { menuId: 1, description: 'Veggie', price: 0.0038 },
+          { menuId: 2, description: 'Pepperoni', price: 0.0042 },
+          { menuId: 1, description: 'Veggie', price: 0.0038 },
+          { menuId: 2, description: 'Pepperoni', price: 0.0042 },
+        ],
+        page: 1,
+      }]}
       await route.fulfill({ json: getOrderRes });
     }
   });
@@ -129,6 +130,9 @@ test('purchase with login', async ({ page }) => {
 
   // Check balance
   await expect(page.getByText('0.016')).toBeVisible();
+  await page.getByRole('button', { name: 'Verify' }).click();
+  await page.getByRole('button', { name: 'Close' }).click();
+  await page.getByRole('button', { name: 'Order more' }).click();
 
   // Go to diner dashboard
   await page.getByRole('link', { name: 'KC' }).click();
