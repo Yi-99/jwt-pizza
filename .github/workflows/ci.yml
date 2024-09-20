@@ -55,6 +55,7 @@ jobs:
           git push
   deploy:
     needs: build
+    timeout-minutes: 5
     permissions:
       id-token: write
     runs-on: ubuntu-latest
