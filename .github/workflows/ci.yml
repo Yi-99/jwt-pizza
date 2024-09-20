@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-      url: https://pizza.jwt-pizza-dev.com
+      url: ${{ secrets.PRODUCTION_URL }}
     env:
       version: ${{needs.build.outputs.version}}
     steps:
